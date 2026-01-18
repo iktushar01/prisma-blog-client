@@ -1,0 +1,7 @@
+export default function Contactpage() {
+  return (
+    <div>
+      <h1>this is contact</h1>
+    </div>
+  );
+}
