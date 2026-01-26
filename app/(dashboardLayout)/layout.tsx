@@ -17,18 +17,18 @@ import {
 export default function DashboardLayout({
   admin,
   user
-   }:{ 
+}: {
   children: React.ReactNode,
-  admin:React.ReactNode,
-  user:React.ReactNode
- }) {
+  admin: React.ReactNode,
+  user: React.ReactNode
+}) {
 
-const userInfo = {
-  role:"admin"
-}
+  const userInfo: { role: "admin" | "user" } = {
+    role: "admin"
+  }
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar user={userInfo} />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
@@ -50,9 +50,9 @@ const userInfo = {
             </BreadcrumbList>
           </Breadcrumb>
         </header>
-       <div className="flex flex-1 flex-col gap-4 p-4">
-        {userInfo.role === "admin" ? admin : user}
-       </div>
+        <div className="flex flex-1 flex-col gap-4 p-4">
+          {userInfo.role === "admin" ? admin : user}
+        </div>
       </SidebarInset>
     </SidebarProvider>
   )
