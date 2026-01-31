@@ -34,5 +34,5 @@ export default async function Home() {
         <BlogCard key={post.id} post={post} />
       ))}
     </div>
-  );
+  ); 
 }
