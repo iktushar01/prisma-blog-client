@@ -18,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 import { useForm } from "@tanstack/react-form";
+import { CloudCog } from "lucide-react";
 import { toast } from "sonner";
 import * as z from "zod";
 
@@ -70,6 +71,9 @@ export function LoginForm({ ...props }: React.ComponentProps<typeof Card>) {
     },
   });
 
+  const session = authClient.useSession();
+  console.log(session);
+  
   return (
     <Card {...props}>
       <CardHeader>

@@ -2,8 +2,23 @@ import BlogCard from "@/components/modules/homepage/BlogCard";
 
 import { blogService } from "@/services/blog.service";
 import { BlogPost } from "@/types";
+import { cookies } from "next/headers";
 
 export default async function Home() {
+  const cookieStore = await cookies();
+  const cookieHeader = cookieStore.getAll().map(cookie => `${cookie.name}=${cookie.value}`).join('; ');
+
+  console.log("Cookie String:", cookieHeader);
+
+  const res = await fetch("http://localhost:5000/api/auth/get-session", {
+    headers: {
+      Cookie: cookieHeader
+    },
+    cache: "no-store",
+  });
+  const session = await res.json()
+  console.log(session)
+  console.log("Cookie Store:", cookieStore);
   const { data } = await blogService.getBlogPosts(
     {
       isFeatured: false,
